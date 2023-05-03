@@ -1,6 +1,8 @@
 # Pokedex
 
-<!-- wireframe pokedex -->
+### Pokedex Wireframe
+![pokedex wireframe](https://user-images.githubusercontent.com/30959973/235921629-f565ee3a-c12d-43f3-82de-da3689cafc69.png)
+
 <!-- TO DO: add table of contents -->
 ### Description
 MVP of a Pokedex
