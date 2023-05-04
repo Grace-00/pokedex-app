@@ -1,0 +1,12 @@
+.header-link {
+    text-decoration: none;
+    color: #fff;
+}
+
+.header {
+    padding: 10px 20px;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
