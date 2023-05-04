@@ -1,9 +1,9 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom';
-import { Home } from './routes/Home';
+import { PokemonList } from './routes/PokemonList';
 // import { Detail } from './routes/Detail';
 import { Pages } from './types';
-import { Header } from './components';
+import { Header } from './components/Header';
 
 
 const EntryPoint = () => {
@@ -11,7 +11,7 @@ const EntryPoint = () => {
     <>
       <Header />
        <Routes>
-          <Route path={Pages.Home} element={<Home />} />
+          <Route path={Pages.PokemonList} element={<PokemonList />} />
 
           {/* TO CONFIG WITH FETCHED DATA */}
           {/* <Route path={Pages.Detail} element={<Detail />} /> */} 

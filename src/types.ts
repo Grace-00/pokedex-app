@@ -1,4 +1,4 @@
 export enum Pages {
-    Home = '/',
+    PokemonList = '/',
     Detail = '/Detail',
 }
