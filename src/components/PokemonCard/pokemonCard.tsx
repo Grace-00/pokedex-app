@@ -11,11 +11,11 @@ export interface Pokemon {
   name: string
   url: string
   sprites: Sprites
-  height: number
-  weight: number
-  types: Types[]
-  moves: Moves[]
-  stats: Stats[]
+  height?: number
+  weight?: number
+  types?: Types[]
+  moves?: Moves[]
+  stats?: Stats[]
 }
 export interface Types {
   type: {

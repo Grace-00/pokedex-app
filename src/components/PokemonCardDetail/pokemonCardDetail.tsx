@@ -37,13 +37,13 @@ const PokemonCardDetail: FC<PokemonCardDetailProps> = ({ pokemon }) => {
         <div>
           <h2>Types:</h2>
           <label>
-            {types.map((type) => type.type.name).join(' ')}
+            {types?.map((type) => type.type.name).join(' ')}
           </label>
         </div>
         <div>
           <h2>Stats</h2>
           <label>
-            {stats.map((stat) => {
+            {stats?.map((stat) => {
               return (
                 <div key={stat.stat.name}>
                   <label>{stat.stat.name}</label>
@@ -56,7 +56,7 @@ const PokemonCardDetail: FC<PokemonCardDetailProps> = ({ pokemon }) => {
         <div>
           <h2>Moves:</h2>
           <label>
-            {moves.map((move) => move.move.name).join(' ')}
+            {moves?.map((move) => move.move.name).join(' ')}
           </label>
         </div>
       </>
