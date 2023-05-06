@@ -1,19 +1,25 @@
 import React, { FC } from 'react'
 import './pokemonCard.css'
-
+import { Sprites } from '../api/api'
 
 export interface PokemonCardProps {
-  name: string
-  url: string
+  pokemon: Pokemon
 }
 
-const PokemonCard: FC<PokemonCardProps> = ({name, url}) => {
+interface Pokemon {
+  name: string
+  url: string
+  sprites: Sprites
+}
 
+const PokemonCard: FC<PokemonCardProps> = ({ pokemon }) => {
+  const img = pokemon.sprites?.front_default || 'img not found'
   return (
-    <main className='pokemonList'>
-      <h1>{name}</h1>
+    <main className="pokemonList">
+      <h1>{pokemon.name}</h1>
+      <img src={img} />
     </main>
-  );
-};
+  )
+}
 
 export default PokemonCard

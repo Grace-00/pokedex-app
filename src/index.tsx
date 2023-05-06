@@ -1,14 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
-import EntryPoint from './EntryPoint';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
+import EntryPoint from './EntryPoint'
 import './index.css'
 
-const root = ReactDOM.createRoot(document.getElementById('root') as Element);
+const root = ReactDOM.createRoot(document.getElementById('root') as Element)
 root.render(
- <React.StrictMode>
+  <React.StrictMode>
     <BrowserRouter>
-       <EntryPoint />
+      <EntryPoint />
     </BrowserRouter>
- </React.StrictMode>
-);
+  </React.StrictMode>
+)
