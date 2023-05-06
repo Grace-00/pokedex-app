@@ -13,12 +13,12 @@ interface Pokemon {
 }
 
 const PokemonCard: FC<PokemonCardProps> = ({ pokemon }) => {
-  const img = pokemon.sprites?.front_default || 'img not found'
+  const frontDefaultImage = pokemon.sprites?.front_default || 'img not found'
   return (
-    <main className="pokemonList">
+    <div className="pokemon-card">
       <h1>{pokemon.name}</h1>
-      <img src={img} />
-    </main>
+      <img src={frontDefaultImage} alt={`image of: ${pokemon.name}`} />
+    </div>
   )
 }
 
