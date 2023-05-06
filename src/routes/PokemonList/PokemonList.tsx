@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { getPokemonListFromCurrentPage, PokemonPage } from '../../api/api'
-import { PokemonCard } from '../../PokemonCard'
+import { PokemonCard } from '../../components/PokemonCard'
 import './pokemonList.css'
 
 const BASE_URL = 'https://pokeapi.co/api/v2/pokemon'
@@ -34,7 +34,7 @@ const PokemonList = () => {
       await getPokemonListFromCurrentPage(pokemonPage.nextPage ?? BASE_URL)
     setPokemonPage((prevPageState) => ({
       ...prevPageState,
-      allPokemonInfo: [...allPokemonInfo.slice(0, 20)],
+      allPokemonInfo,
       nextPage,
       prevPage,
     }))
@@ -46,7 +46,7 @@ const PokemonList = () => {
         await getPokemonListFromCurrentPage(pokemonPage.prevPage)
       setPokemonPage((prevPageState) => ({
         ...prevPageState,
-        allPokemonInfo: allPokemonInfo.slice(-20),
+        allPokemonInfo,
         nextPage,
         prevPage,
       }))

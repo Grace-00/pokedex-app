@@ -1,3 +1,3 @@
-import Detail from './Detail'
+import PokemonDetail from './Detail'
 
-export { Detail }
+export { PokemonDetail }

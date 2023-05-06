@@ -50,6 +50,8 @@ export const getPokemonListFromCurrentPage = (
       return { allPokemonInfo, nextPage, prevPage }
     })
 
-export const getPokemonDetail = async (id: number) => {
-  return await pokemonInstance.get(`${id}`)
+export const getPokemonDetail = async (name: string) => {
+  if (name !== undefined) {
+    return await pokemonInstance.get(`${name}`)
+  }
 }

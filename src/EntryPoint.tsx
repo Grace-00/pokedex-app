@@ -1,9 +1,9 @@
 import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { PokemonList } from './routes/PokemonList'
-// import { Detail } from './routes/Detail';
 import { Pages } from './types'
 import { Header } from './components/Header'
+import { PokemonDetail } from './routes/Detail'
 
 const EntryPoint = () => {
   return (
@@ -12,8 +12,7 @@ const EntryPoint = () => {
       <Routes>
         <Route path={Pages.PokemonList} element={<PokemonList />} />
 
-        {/* TO CONFIG WITH FETCHED DATA */}
-        {/* <Route path={Pages.Detail} element={<Detail />} /> */}
+        <Route path={Pages.PokemonCard + ':pokemonName'} element={<PokemonDetail />} />
       </Routes>
     </>
   )
