@@ -11,6 +11,33 @@ export interface Pokemon {
   name: string
   url: string
   sprites: Sprites
+  height: number
+  weight: number
+  types: Types[]
+  moves: Moves[]
+  stats: Stats[]
+}
+export interface Types {
+  type: {
+    name: string
+    url: string
+  }
+}
+
+export interface Moves {
+  move: {
+    name: string
+    url: string
+  }
+}
+
+export interface Stats {
+  base_stat: number
+  effort: number
+  stat: {
+    name: string
+    url: string
+  }
 }
 
 const PokemonCard: FC<PokemonCardProps> = ({ pokemon }) => {

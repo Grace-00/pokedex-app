@@ -4,7 +4,6 @@ import { Pokemon } from '../../components/PokemonCard/pokemonCard'
 import { getPokemonDetail } from '../../api/api'
 import { PokemonCardDetail } from '../../components/PokemonCardDetail'
 
-
 const PokemonDetail = () => {
   const { pokemonName } = useParams()
   const [pokemon, setPokemon] = useState<Pokemon>()
