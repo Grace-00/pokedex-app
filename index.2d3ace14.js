@@ -2937,6 +2937,7 @@ var _indexCss = require("./index.css");
 const root = (0, _clientDefault.default).createRoot(document.getElementById("root"));
 root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactDefault.default).StrictMode, {
     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.BrowserRouter), {
+        basename: undefined,
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _entryPointDefault.default), {}, void 0, false, {
             fileName: "src/index.tsx",
             lineNumber: 11,
