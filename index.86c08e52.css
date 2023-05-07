@@ -1,15 +1,4 @@
 @import "https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap";
-.pokemon-list-container {
-  padding: 20px 0;
-}
-
-.pokemon-list {
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  display: flex;
-}
-
 .pokemon-card {
   height: 200px;
   width: 200px;
@@ -24,6 +13,17 @@
 .pokemon-card-link {
   color: #000;
   text-decoration: none;
+}
+
+.pokemon-list-container {
+  padding: 20px 0;
+}
+
+.pokemon-list {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  display: flex;
 }
 
 .icon-arrow-back, .icon-arrow-forward, .pokemon-card-detail-back {
@@ -118,4 +118,4 @@
   font-family: Inter, sans-serif;
 }
 
-/*# sourceMappingURL=index.5c253870.css.map */
+/*# sourceMappingURL=index.86c08e52.css.map */
