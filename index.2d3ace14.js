@@ -2935,22 +2935,21 @@ var _entryPoint = require("./EntryPoint");
 var _entryPointDefault = parcelHelpers.interopDefault(_entryPoint);
 var _indexCss = require("./index.css");
 const root = (0, _clientDefault.default).createRoot(document.getElementById("root"));
-console.log(undefined);
 root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactDefault.default).StrictMode, {
     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.BrowserRouter), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _entryPointDefault.default), {}, void 0, false, {
             fileName: "src/index.tsx",
-            lineNumber: 12,
+            lineNumber: 11,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/index.tsx",
-        lineNumber: 11,
+        lineNumber: 10,
         columnNumber: 5
     }, undefined)
 }, void 0, false, {
     fileName: "src/index.tsx",
-    lineNumber: 10,
+    lineNumber: 9,
     columnNumber: 3
 }, undefined));
 
@@ -32409,7 +32408,7 @@ const EntryPoint = ()=>{
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
-                        path: (0, _types.Pages).PokemonCard + ":pokemonName",
+                        path: (0, _types.Pages).PokemonCard,
                         element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _detail.PokemonDetail), {}, void 0, false, void 0, void 0)
                     }, void 0, false, {
                         fileName: "src/EntryPoint.tsx",
@@ -32457,7 +32456,7 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _api = require("../../api/api");
 var _pokemonCard = require("../../components/PokemonCard");
 var _pokemonListCss = require("./pokemonList.css");
-var _button = require("../../components/Button");
+var _ = require("../../components/Button/");
 var _s = $RefreshSig$();
 const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 const PokemonList = ()=>{
@@ -32545,7 +32544,7 @@ const PokemonList = ()=>{
                 lineNumber: 67,
                 columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _button.Button), {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _.Button), {
                 onClick: handlePrevPage,
                 className: "icon-arrow-back",
                 icon: `./icon-arrow-back.svg`
@@ -32554,7 +32553,7 @@ const PokemonList = ()=>{
                 lineNumber: 74,
                 columnNumber: 7
             }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _button.Button), {
+            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _.Button), {
                 onClick: handleNextPage,
                 className: "icon-arrow-forward",
                 icon: `./icon-arrow-forward.svg`
@@ -32577,7 +32576,7 @@ $RefreshReg$(_c, "PokemonList");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../api/api":"kiSD7","../../components/PokemonCard":"h7EcF","./pokemonList.css":"iHZ8g","../../components/Button":"i3jlU","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"kiSD7":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../api/api":"kiSD7","../../components/PokemonCard":"h7EcF","./pokemonList.css":"iHZ8g","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../../components/Button/":"i3jlU"}],"kiSD7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "BASE_URL", ()=>BASE_URL);
@@ -37001,7 +37000,7 @@ parcelHelpers.export(exports, "Pages", ()=>Pages);
 let Pages;
 (function(Pages) {
     Pages["PokemonList"] = "/";
-    Pages["PokemonCard"] = "/pokemon/";
+    Pages["PokemonCard"] = "/pokemon/:pokemonName";
 })(Pages || (Pages = {}));
 
 },{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kkCkM":[function(require,module,exports) {
@@ -37176,7 +37175,6 @@ const PokemonCardDetail = ({ pokemon  })=>{
     const handleGoBack = ()=>{
         navigate(-1);
     };
-    console.log(pokemon);
     const { height , weight , stats , types , moves  } = pokemon;
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -37379,6 +37377,6 @@ $RefreshReg$(_c, "PokemonCardDetail");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./pokemonCardDetail.css":"3k1tb","react-router-dom":"9xmpe","../Button":"i3jlU","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"3k1tb":[function() {},{}],"irmnC":[function() {},{}]},["1xC6H","ddMC0","4aBH6"], "4aBH6", "parcelRequire9475")
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./pokemonCardDetail.css":"3k1tb","react-router-dom":"9xmpe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../Button":"i3jlU"}],"3k1tb":[function() {},{}],"irmnC":[function() {},{}]},["1xC6H","ddMC0","4aBH6"], "4aBH6", "parcelRequire9475")
 
 //# sourceMappingURL=index.2d3ace14.js.map
