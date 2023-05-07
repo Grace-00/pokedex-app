@@ -75,12 +75,12 @@ const PokemonList = () => {
       <Button
         onClick={handlePrevPage}
         className={'icon-arrow-back'}
-        buttonName={'PREV'}
+        icon={`./arrow-back.svg`}
       />
       <Button
         onClick={handleNextPage}
         className={'icon-arrow-forward'}
-        buttonName={'NEXT'}
+        icon={`./arrow-forward.svg`}
       />
       </div>
     </>
