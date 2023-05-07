@@ -55,7 +55,14 @@ const PokemonList = () => {
   }
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return (
+    <div className="loading-circle">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      </div>
+    )
   }
 
   if (error) {
@@ -71,17 +78,17 @@ const PokemonList = () => {
           })}
         </div>
       </div>
-      <div className='pokemon-list-btn-container'>
-      <Button
-        onClick={handlePrevPage}
-        className={'icon-arrow-back'}
-        icon={`./arrow-back.svg`}
-      />
-      <Button
-        onClick={handleNextPage}
-        className={'icon-arrow-forward'}
-        icon={`./arrow-forward.svg`}
-      />
+      <div className="pokemon-list-btn-container">
+        <Button
+          onClick={handlePrevPage}
+          className={'icon-arrow-back'}
+          icon={`./arrow-back.svg`}
+        />
+        <Button
+          onClick={handleNextPage}
+          className={'icon-arrow-forward'}
+          icon={`./arrow-forward.svg`}
+        />
       </div>
     </>
   )

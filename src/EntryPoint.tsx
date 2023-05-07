@@ -13,10 +13,7 @@ const EntryPoint = () => {
       <Routes>
         <Route path={Pages.PokemonList} element={<PokemonList />} />
 
-        <Route
-          path={Pages.PokemonCard}
-          element={<PokemonDetail />}
-        />
+        <Route path={Pages.PokemonCard} element={<PokemonDetail />} />
         <Route path={Pages.NotFound} element={<NotFound />} />
       </Routes>
     </>

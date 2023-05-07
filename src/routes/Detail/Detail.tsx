@@ -31,7 +31,12 @@ const PokemonDetail = () => {
   }, [pokemonName])
 
   if (!pokemon || isLoading) {
-    return <div>Loading...</div>
+    return (<div className="loading-circle">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    </div>)
   }
 
   if (error) {
