@@ -8,3 +8,8 @@
     justify-content: center;
     flex-wrap: wrap;
 }
+
+.pokemon-list-btn-container {
+    position: absolute;
+    right: 40px;
+}

@@ -22,7 +22,7 @@ const PokemonCardDetail: FC<PokemonCardDetailProps> = ({ pokemon }) => {
   return (
     <>
       <div className="pokemon-card-detail-container">
-        <Button className="pokemon-card-detail-back" onClick={handleGoBack} icon={`./icon-arrow-back.svg`} />
+        <Button className="pokemon-card-detail-back" onClick={handleGoBack} buttonName={'PREV'} />
         <div className="pokemon-card-detail-name">
           <h1>{pokemon.name}</h1>
           <img src={frontDefaultImage} alt={`image of: ${pokemon.name}`} />

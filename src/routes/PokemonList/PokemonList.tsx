@@ -71,16 +71,18 @@ const PokemonList = () => {
           })}
         </div>
       </div>
+      <div className='pokemon-list-btn-container'>
       <Button
         onClick={handlePrevPage}
         className={'icon-arrow-back'}
-        icon={`../../icons/icon-arrow-back.svg`}
+        buttonName={'PREV'}
       />
       <Button
         onClick={handleNextPage}
         className={'icon-arrow-forward'}
-        icon={`./icon-arrow-forward.svg`}
+        buttonName={'NEXT'}
       />
+      </div>
     </>
   )
 }
