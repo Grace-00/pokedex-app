@@ -4,6 +4,7 @@ import { PokemonList } from './routes/PokemonList'
 import { Pages } from './types'
 import { Header } from './components/Header'
 import { PokemonDetail } from './routes/Detail'
+import { NotFound } from './routes/NotFound'
 
 const EntryPoint = () => {
   return (
@@ -16,6 +17,7 @@ const EntryPoint = () => {
           path={Pages.PokemonCard}
           element={<PokemonDetail />}
         />
+        <Route path={Pages.NotFound} element={<NotFound />} />
       </Routes>
     </>
   )
