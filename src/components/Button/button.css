@@ -1,0 +1,8 @@
+.icon-arrow-back,
+.icon-arrow-forward,
+.pokemon-card-detail-back {
+    cursor: pointer;
+    padding: 20px;
+    background: none;
+    border: none;
+}

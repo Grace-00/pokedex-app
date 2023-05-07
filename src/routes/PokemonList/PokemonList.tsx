@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { getPokemonListFromCurrentPage, PokemonPage } from '../../api/api'
 import { PokemonCard } from '../../components/PokemonCard'
 import './pokemonList.css'
+import { Button } from '../../components/Button/'
 
 const BASE_URL = 'https://pokeapi.co/api/v2/pokemon'
 
@@ -70,8 +71,16 @@ const PokemonList = () => {
           })}
         </div>
       </div>
-      <button onClick={handlePrevPage}>Previous Page</button>
-      <button onClick={handleNextPage}>Next Page</button>
+      <Button
+        onClick={handlePrevPage}
+        className={'icon-arrow-back'}
+        icon={`../../icons/icon-arrow-back.svg`}
+      />
+      <Button
+        onClick={handleNextPage}
+        className={'icon-arrow-forward'}
+        icon={`./icon-arrow-forward.svg`}
+      />
     </>
   )
 }
