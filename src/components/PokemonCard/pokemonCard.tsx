@@ -1,43 +1,10 @@
 import React, { FC } from 'react'
 import './pokemonCard.css'
-import { Sprites } from '../../api/api'
 import { Link } from 'react-router-dom'
+import { Pokemon } from '../../types'
 
 export interface PokemonCardProps {
-  pokemon: Pokemon
-}
-
-export interface Pokemon {
-  name: string
-  url: string
-  sprites: Sprites
-  height?: number
-  weight?: number
-  types?: Types[]
-  moves?: Moves[]
-  stats?: Stats[]
-}
-export interface Types {
-  type: {
-    name: string
-    url: string
-  }
-}
-
-export interface Moves {
-  move: {
-    name: string
-    url: string
-  }
-}
-
-export interface Stats {
-  base_stat: number
-  effort: number
-  stat: {
-    name: string
-    url: string
-  }
+  readonly pokemon: Pokemon
 }
 
 const PokemonCard: FC<PokemonCardProps> = ({ pokemon }) => {

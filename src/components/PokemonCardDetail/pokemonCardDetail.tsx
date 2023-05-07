@@ -1,11 +1,11 @@
 import React, { FC } from 'react'
 import './pokemonCardDetail.css'
 import { useNavigate } from 'react-router-dom'
-import { Pokemon } from '../PokemonCard/pokemonCard'
 import { Button } from '../Button'
+import { Pokemon } from '../../types'
 
 export interface PokemonCardDetailProps {
-  pokemon: Pokemon
+  readonly pokemon: Pokemon
 }
 
 const PokemonCardDetail: FC<PokemonCardDetailProps> = ({ pokemon }) => {

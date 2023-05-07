@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { Pokemon } from '../../components/PokemonCard/pokemonCard'
 import { getPokemonDetail } from '../../api/api'
 import { PokemonCardDetail } from '../../components/PokemonCardDetail'
+import { Pokemon } from '../../types'
 
 const PokemonDetail = () => {
   const { pokemonName } = useParams()
