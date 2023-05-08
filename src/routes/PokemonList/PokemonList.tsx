@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, FC } from 'react'
 import { getPokemonListFromCurrentPage, PokemonPage } from '../../api/api'
 import { PokemonCard } from '../../components/PokemonCard'
 import './pokemonList.css'
 import { Button } from '../../components/Button/'
+import { Pokemon } from '../../types'
 
 const BASE_URL = 'https://pokeapi.co/api/v2/pokemon'
+export interface PokemonListProps {
+  readonly onFavourite: (pokemon: Pokemon) => void
+}
 
-const PokemonList = () => {
+const PokemonList: FC<PokemonListProps> = (props: PokemonListProps) => {
   const [pokemonPage, setPokemonPage] = useState<PokemonPage>({
     allPokemonInfo: [],
     nextPage: null,
@@ -74,7 +78,7 @@ const PokemonList = () => {
       <div className="pokemon-list-container">
         <div className="pokemon-list">
           {pokemonPage.allPokemonInfo.map((pokemon) => {
-            return <PokemonCard key={pokemon.name} pokemon={pokemon} />
+            return <PokemonCard key={pokemon.name} pokemon={pokemon} onFavourite={props.onFavourite} />
           })}
         </div>
       </div>

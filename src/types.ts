@@ -1,6 +1,7 @@
 export enum Pages {
   PokemonList = '/',
   PokemonCard = '/pokemon/' + ':pokemonName',
+  Favourites = '/favourites',
   NotFound = '*',
 }
 
