@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "source": "src/index.html",
-  "homepage": "https://grace-00.github.io/",
+  "homepage": "https://grace-00.github.io/pokedex-app/",
   "scripts": {
     "build": "parcel build src/index.html",
-    "predeploy": "rm -rf dist && parcel build src/index.html --no-source-maps --public-url ./",
+    "predeploy": "rm -rf dist && parcel build src/index.html --no-source-maps --public-url /pokedex-app/",
     "deploy": "gh-pages -d dist",
     "lint": "eslint \"src/**/*.{ts,tsx}\" --quiet",
     "format": "prettier --write --no-semi \"src/**/*.{ts,tsx}\"",
