@@ -6,3 +6,12 @@
     background: none;
     border: none;
 }
+
+.pokemon-card-favourite {
+    cursor: pointer;
+    background: none;
+    border: none;
+    position: absolute;
+    right: 5;
+    bottom: 5;
+}
