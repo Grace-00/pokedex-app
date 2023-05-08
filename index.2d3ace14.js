@@ -32388,7 +32388,7 @@ var _reactRouterDom = require("react-router-dom");
 var _pokemonList = require("./routes/PokemonList");
 var _types = require("./types");
 var _header = require("./components/Header");
-var _detail = require("./routes/Detail");
+var _pokemonDetail = require("./routes/PokemonDetail");
 var _notFound = require("./routes/NotFound");
 const EntryPoint = ()=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
@@ -32410,7 +32410,7 @@ const EntryPoint = ()=>{
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                         path: (0, _types.Pages).PokemonCard,
-                        element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _detail.PokemonDetail), {}, void 0, false, void 0, void 0)
+                        element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _pokemonDetail.PokemonDetail), {}, void 0, false, void 0, void 0)
                     }, void 0, false, {
                         fileName: "src/EntryPoint.tsx",
                         lineNumber: 16,
@@ -32443,7 +32443,7 @@ $RefreshReg$(_c, "EntryPoint");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","./routes/PokemonList":"bb2Bq","./types":"38MWl","./components/Header":"kkCkM","./routes/Detail":"2FjmX","./routes/NotFound":"9OAbH","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bb2Bq":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","./routes/PokemonList":"bb2Bq","./types":"38MWl","./components/Header":"kkCkM","./routes/PokemonDetail":"1U19X","./routes/NotFound":"9OAbH","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bb2Bq":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "PokemonList", ()=>(0, _pokemonListDefault.default));
@@ -37103,18 +37103,18 @@ $RefreshReg$(_c, "Header");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","../../types":"38MWl","./header.css":"1TUSb","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"1TUSb":[function() {},{}],"2FjmX":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","../../types":"38MWl","./header.css":"1TUSb","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"1TUSb":[function() {},{}],"1U19X":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "PokemonDetail", ()=>(0, _detailDefault.default));
-var _detail = require("./Detail");
-var _detailDefault = parcelHelpers.interopDefault(_detail);
+parcelHelpers.export(exports, "PokemonDetail", ()=>(0, _pokemonDetailDefault.default));
+var _pokemonDetail = require("./PokemonDetail");
+var _pokemonDetailDefault = parcelHelpers.interopDefault(_pokemonDetail);
 
-},{"./Detail":"llOFe","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"llOFe":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$a836 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+},{"./PokemonDetail":"jm2oH","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"jm2oH":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$bd13 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$a836.prelude(module);
+$parcel$ReactRefreshHelpers$bd13.prelude(module);
 
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -37156,42 +37156,42 @@ const PokemonDetail = ()=>{
         className: "loading-circle",
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
-                fileName: "src/routes/Detail/Detail.tsx",
+                fileName: "src/routes/PokemonDetail/PokemonDetail.tsx",
                 lineNumber: 35,
                 columnNumber: 5
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
-                fileName: "src/routes/Detail/Detail.tsx",
+                fileName: "src/routes/PokemonDetail/PokemonDetail.tsx",
                 lineNumber: 36,
                 columnNumber: 5
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
-                fileName: "src/routes/Detail/Detail.tsx",
+                fileName: "src/routes/PokemonDetail/PokemonDetail.tsx",
                 lineNumber: 37,
                 columnNumber: 5
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
-                fileName: "src/routes/Detail/Detail.tsx",
+                fileName: "src/routes/PokemonDetail/PokemonDetail.tsx",
                 lineNumber: 38,
                 columnNumber: 5
             }, undefined)
         ]
     }, void 0, true, {
-        fileName: "src/routes/Detail/Detail.tsx",
+        fileName: "src/routes/PokemonDetail/PokemonDetail.tsx",
         lineNumber: 34,
         columnNumber: 13
     }, undefined);
     if (error) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: error
     }, void 0, false, {
-        fileName: "src/routes/Detail/Detail.tsx",
+        fileName: "src/routes/PokemonDetail/PokemonDetail.tsx",
         lineNumber: 43,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _pokemonCardDetail.PokemonCardDetail), {
         pokemon: pokemon
     }, void 0, false, {
-        fileName: "src/routes/Detail/Detail.tsx",
+        fileName: "src/routes/PokemonDetail/PokemonDetail.tsx",
         lineNumber: 46,
         columnNumber: 10
     }, undefined);
@@ -37206,7 +37206,7 @@ exports.default = PokemonDetail;
 var _c;
 $RefreshReg$(_c, "PokemonDetail");
 
-  $parcel$ReactRefreshHelpers$a836.postlude(module);
+  $parcel$ReactRefreshHelpers$bd13.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
