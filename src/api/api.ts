@@ -16,29 +16,32 @@ export interface PokemonPage {
   prevPage: string | null
 }
 
-export const getPokemonListFromCurrentPage = (
+export const getPokemonListFromCurrentPage = async (
   currentPageUrl: string,
   limit = 20,
   offset = 0
-): Promise<PokemonPage> =>
-  pokemonInstance
-    .get(currentPageUrl, { params: { limit, offset } })
-    .then(async (res) => {
-      const allPokemonInfo = []
-
-      const allPokemon = res.data.results
-      const nextPage = res.data.next
-      const prevPage = res.data.previous
-
-      for (let i = 0; i < allPokemon.length; i++) {
-        const pokemonDetail = await fetch(allPokemon[i].url).then((pokemon) =>
-          pokemon.json()
-        )
-        allPokemon[i] = { ...allPokemon[i], ...pokemonDetail }
-        allPokemonInfo.push(allPokemon[i])
-      }
-      return { allPokemonInfo, nextPage, prevPage }
+): Promise<PokemonPage> => {
+  try {
+    const response = await axios.get(currentPageUrl, {
+      params: { limit, offset },
     })
+    const { results, next, previous } = response.data
+
+    const pokemonDetailPromises = results.map((pokemon: Pokemon) =>
+      axios.get(pokemon.url).then((response) => response.data)
+    );
+    const allPokemonDetail = await Promise.all(pokemonDetailPromises);
+
+    const allPokemonInfo = results.map((pokemon: Pokemon, index: number) => ({
+      ...pokemon,
+      ...allPokemonDetail[index],
+    }))
+
+    return { allPokemonInfo, nextPage: next, prevPage: previous }
+  } catch (error) {
+    throw new Error('Failed to get Pokemon list.')
+  }
+}
 
 export const getPokemonDetail = async (name: string) => {
   if (name !== undefined) {
