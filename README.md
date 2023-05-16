@@ -24,7 +24,7 @@ User can
 - :white_check_mark: see different layout depending on screen size
 - :white_check_mark: click on a pokemon to read more about it
 - :x: search through all pokemon per name
-- :x: add/remove one pokemon from favourites
+- ✅ add/remove one pokemon from favourites
 
 ## How to start on a local machine
 run `git clone` to clone the repository on your local machine <br/>
