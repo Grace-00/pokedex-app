@@ -4,7 +4,12 @@ import { PokemonCard } from '../../components/PokemonCard'
 import './pokemonList.css'
 import { Button } from '../../components/Button/'
 import { Pokemon } from '../../types'
-import { extractOffsetFromUrl, handlePageChange } from '../../helpers'
+import {
+  extractOffsetFromUrl,
+  handlePageChange,
+  useLoadingState,
+} from '../../helpers'
+import { LoadingSpinner } from '../../components/LoadingSpinner'
 
 export interface PokemonListProps {
   readonly onFavourite: (pokemon: Pokemon) => void
@@ -17,17 +22,15 @@ const PokemonList: FC<PokemonListProps> = (props: PokemonListProps) => {
     previous: null,
   })
   const [offset, setOffset] = useState(0)
-  const [isLoading, setIsLoading] = useState(true)
+  const { isLoading } = useLoadingState(true)
   const [error, setError] = useState('')
 
   const fetchData = async (offset: number) => {
     try {
       const data = await fetchPokemonData(offset)
       setPokemonData(data)
-      setIsLoading(false)
     } catch (error) {
       setError('Unable to fetch Pokemon list')
-      setIsLoading(false)
     }
   }
 
@@ -51,20 +54,13 @@ const PokemonList: FC<PokemonListProps> = (props: PokemonListProps) => {
     }
   }
 
-  if (isLoading) {
-    return (
-      <div className="loading-circle">
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-    )
+  {
+    isLoading && LoadingSpinner
+  }
+  {
+    error && <div>{error}</div>
   }
 
-  if (error) {
-    return <div>{error}</div>
-  }
   return (
     <>
       <div className="pokemon-list-container">

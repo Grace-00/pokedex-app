@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   font-family: 'Inter', sans-serif;
+  box-sizing: border-box;
 }
 
 .loading-circle {
@@ -13,7 +14,6 @@
   height: 80px;
 }
 .loading-circle div {
-  box-sizing: border-box;
   display: block;
   position: absolute;
   width: 64px;
