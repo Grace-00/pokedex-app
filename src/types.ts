@@ -7,6 +7,16 @@ export enum Pages {
 
 // POKEMON INTERFACES
 
+export interface PokemonPage {
+  results: {
+    name: string
+    url: string
+    sprites: Sprites
+  }[]
+  next: string | null
+  previous: string | null
+}
+
 export interface Pokemon {
   readonly name: string
   readonly url: string

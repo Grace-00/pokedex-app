@@ -1,19 +1,9 @@
 import axios from 'axios'
-import { Pokemon, Sprites } from '../types'
+import { Pokemon, PokemonPage } from '../types'
 
 export const pokemonInstance = axios.create({
   baseURL: 'https://pokeapi.co/api/v2/pokemon',
 })
-
-export interface PokemonPage {
-  results: {
-    name: string
-    url: string
-    sprites: Sprites
-  }[]
-  next: string | null
-  previous: string | null
-}
 
 export const fetchPokemonData = async (offset = 0): Promise<PokemonPage> => {
   try {
