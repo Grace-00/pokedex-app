@@ -1,9 +1,9 @@
 import React, { useState, useEffect, FC } from 'react'
-import { fetchPokemonData, PokemonPage } from '../../api/api'
+import { fetchPokemonData } from '../../api/api'
 import { PokemonCard } from '../../components/PokemonCard'
 import './pokemonList.css'
 import { Button } from '../../components/Button/'
-import { Pokemon } from '../../types'
+import { Pokemon, PokemonPage } from '../../types'
 import {
   extractOffsetFromUrl,
   handlePageChange,
@@ -22,15 +22,17 @@ const PokemonList: FC<PokemonListProps> = (props: PokemonListProps) => {
     previous: null,
   })
   const [offset, setOffset] = useState(0)
-  const { isLoading } = useLoadingState(true)
+  const { isLoading, setIsLoading } = useLoadingState()
   const [error, setError] = useState('')
 
   const fetchData = async (offset: number) => {
     try {
       const data = await fetchPokemonData(offset)
       setPokemonData(data)
+      setIsLoading(!isLoading)
     } catch (error) {
       setError('Unable to fetch Pokemon list')
+      setIsLoading(!isLoading)
     }
   }
 
@@ -54,11 +56,12 @@ const PokemonList: FC<PokemonListProps> = (props: PokemonListProps) => {
     }
   }
 
-  {
-    isLoading && LoadingSpinner
+  if (isLoading) {
+    return <LoadingSpinner />
   }
-  {
-    error && <div>{error}</div>
+
+  if (error) {
+    return <div>{error}</div>
   }
 
   return (
