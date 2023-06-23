@@ -46,6 +46,7 @@ const PokemonList: FC<PokemonListProps> = (props: PokemonListProps) => {
       const updatedOffset = handlePageChange(newOffset, offset)
       setOffset(updatedOffset)
     }
+    setIsLoading(!isLoading)
   }
 
   const handlePrevPage = () => {
@@ -54,6 +55,7 @@ const PokemonList: FC<PokemonListProps> = (props: PokemonListProps) => {
       const updatedOffset = handlePageChange(newOffset, offset)
       setOffset(updatedOffset)
     }
+    setIsLoading(!isLoading)
   }
 
   if (isLoading) {

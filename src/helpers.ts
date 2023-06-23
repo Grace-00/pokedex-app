@@ -20,9 +20,7 @@ export const useLoadingState = (initialState = true) => {
   const [isLoading, setIsLoading] = useState(initialState)
 
   useEffect(() => {
-    return () => {
-      setIsLoading(true)
-    }
+    setIsLoading(true)
   }, [])
 
   return { isLoading, setIsLoading }
