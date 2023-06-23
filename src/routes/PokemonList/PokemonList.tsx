@@ -7,6 +7,7 @@ import { Pokemon, PokemonPage } from '../../types'
 import {
   extractOffsetFromUrl,
   handlePageChange,
+  isLastOffset,
   useLoadingState,
 } from '../../helpers'
 import { LoadingSpinner } from '../../components/LoadingSpinner'
@@ -20,6 +21,7 @@ const PokemonList: FC<PokemonListProps> = (props: PokemonListProps) => {
     results: [],
     next: null,
     previous: null,
+    count: 0,
   })
   const [offset, setOffset] = useState(0)
   const { isLoading, setIsLoading } = useLoadingState()
@@ -39,7 +41,7 @@ const PokemonList: FC<PokemonListProps> = (props: PokemonListProps) => {
   useEffect(() => {
     fetchData(offset)
   }, [offset])
-
+  console.log(pokemonData.count)
   const handleNextPage = () => {
     if (pokemonData.next) {
       const newOffset = extractOffsetFromUrl(pokemonData.next)
@@ -81,11 +83,13 @@ const PokemonList: FC<PokemonListProps> = (props: PokemonListProps) => {
       </div>
       <div className="pokemon-list-btn-container">
         <Button
+          disabled={offset === 0}
           onClick={handlePrevPage}
           className={'icon-arrow-back'}
           icon={`./arrow-back.svg`}
         />
         <Button
+          disabled={isLastOffset(offset, pokemonData.count, 20)}
           onClick={handleNextPage}
           className={'icon-arrow-forward'}
           icon={`./arrow-forward.svg`}

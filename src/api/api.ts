@@ -13,7 +13,7 @@ export const fetchPokemonData = async (offset = 0): Promise<PokemonPage> => {
       { params: { limit: 20, offset } }
     )
 
-    const { results, next, previous } = response.data
+    const { results, next, previous, count } = response.data
 
     const pokemonDetailPromises = results.map((pokemon: Pokemon) =>
       axios.get(pokemon.url).then((response) => response.data)
@@ -25,7 +25,7 @@ export const fetchPokemonData = async (offset = 0): Promise<PokemonPage> => {
       ...allPokemonDetail[index],
     }))
 
-    return { results: allPokemonInfo, next, previous }
+    return { results: allPokemonInfo, next, previous, count }
   } catch (error) {
     throw new Error('Failed to fetch Pokemon data')
   }

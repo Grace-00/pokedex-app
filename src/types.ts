@@ -15,6 +15,7 @@ export interface PokemonPage {
   }[]
   next: string | null
   previous: string | null
+  count: number
 }
 
 export interface Pokemon {
