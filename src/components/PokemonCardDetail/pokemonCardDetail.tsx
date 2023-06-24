@@ -3,6 +3,7 @@ import './pokemonCardDetail.css'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '../Button'
 import { Pokemon } from '../../types'
+import { AiOutlineArrowLeft } from 'react-icons/ai'
 
 export interface PokemonCardDetailProps {
   readonly pokemon: Pokemon
@@ -23,9 +24,10 @@ const PokemonCardDetail: FC<PokemonCardDetailProps> = ({ pokemon }) => {
     <>
       <div className="pokemon-card-detail-container">
         <Button
+          disabled={false}
           className="pokemon-card-detail-back"
           onClick={handleGoBack}
-          icon={`./arrow-back.svg`}
+          icon={<AiOutlineArrowLeft size={24} />}
         />
         <div className="pokemon-card-detail-name">
           <h1>{pokemon.name}</h1>
