@@ -1,17 +1,33 @@
 .icon-arrow-back,
 .icon-arrow-forward,
 .pokemon-card-detail-back {
-    cursor: pointer;
-    padding: 20px;
-    background: none;
-    border: none;
+  cursor: pointer;
+  padding: 20px;
+  background: none;
+  border: none;
 }
 
 .pokemon-card-favourite {
-    cursor: pointer;
-    background: none;
-    border: none;
-    position: absolute;
-    right: 5;
-    bottom: 5;
+  cursor: pointer;
+  background: none;
+  border: none;
+  position: absolute;
+  right: 5;
+  bottom: 5;
+}
+
+@keyframes fillHeart {
+  0% {
+    fill: transparent;
+    transform: scaleY(0) translateX(0);
+    transform-origin: bottom;
+  }
+  50% {
+    transform: scaleY(1.2) translateX(-2px);
+  }
+  100% {
+    fill: red;
+    transform: scaleY(1) translateX(0);
+    transform-origin: bottom;
+  }
 }

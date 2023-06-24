@@ -1,8 +1,7 @@
-import React, { FC } from 'react'
+import React, { FC, ReactElement } from 'react'
 import './button.css'
-
 export interface ButtonProps {
-  readonly icon: string
+  readonly icon: ReactElement
   readonly onClick: () => void
   readonly className: string
   readonly disabled: boolean
@@ -15,7 +14,7 @@ const Button: FC<ButtonProps> = (props: ButtonProps) => {
       className={props.className}
       disabled={props.disabled}
     >
-      <img src={props.icon} alt="icon" style={{ cursor: 'pointer' }} />
+      {props.icon}
     </button>
   )
 }

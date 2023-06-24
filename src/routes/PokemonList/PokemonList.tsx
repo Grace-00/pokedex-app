@@ -11,7 +11,7 @@ import {
   useLoadingState,
 } from '../../helpers'
 import { LoadingSpinner } from '../../components/LoadingSpinner'
-
+import { AiOutlineArrowRight, AiOutlineArrowLeft } from 'react-icons/ai'
 export interface PokemonListProps {
   readonly onFavourite: (pokemon: Pokemon) => void
 }
@@ -86,13 +86,13 @@ const PokemonList: FC<PokemonListProps> = (props: PokemonListProps) => {
           disabled={offset === 0}
           onClick={handlePrevPage}
           className={'icon-arrow-back'}
-          icon={`./arrow-back.svg`}
+          icon={<AiOutlineArrowLeft size={24} />}
         />
         <Button
           disabled={isLastOffset(offset, pokemonData.count, 20)}
           onClick={handleNextPage}
           className={'icon-arrow-forward'}
-          icon={`./arrow-forward.svg`}
+          icon={<AiOutlineArrowRight size={24} />}
         />
       </div>
     </>
