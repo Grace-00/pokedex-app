@@ -35,6 +35,24 @@
   right: 5px;
 }
 
+@keyframes fillHeart {
+  0% {
+    fill: #0000;
+    transform-origin: bottom;
+    transform: scaleY(0)translateX(0);
+  }
+
+  50% {
+    transform: scaleY(1.2)translateX(-2px);
+  }
+
+  100% {
+    fill: red;
+    transform-origin: bottom;
+    transform: scaleY(1)translateX(0);
+  }
+}
+
 .pokemon-list-container {
   padding: 20px 0;
 }
