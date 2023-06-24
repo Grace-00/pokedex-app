@@ -32500,88 +32500,61 @@ var _api = require("../../api/api");
 var _pokemonCard = require("../../components/PokemonCard");
 var _pokemonListCss = require("./pokemonList.css");
 var _ = require("../../components/Button/");
+var _helpers = require("../../helpers");
+var _loadingSpinner = require("../../components/LoadingSpinner");
 var _s = $RefreshSig$();
-const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 const PokemonList = (props)=>{
     _s();
-    const [pokemonPage, setPokemonPage] = (0, _react.useState)({
-        allPokemonInfo: [],
-        nextPage: null,
-        prevPage: null
+    const [pokemonData, setPokemonData] = (0, _react.useState)({
+        results: [],
+        next: null,
+        previous: null,
+        count: 0
     });
-    const [isLoading, setIsLoading] = (0, _react.useState)(true);
+    const [offset, setOffset] = (0, _react.useState)(0);
+    const { isLoading , setIsLoading  } = (0, _helpers.useLoadingState)();
     const [error, setError] = (0, _react.useState)("");
-    (0, _react.useEffect)(()=>{
-        const fetchFirstPage = async ()=>{
-            try {
-                const { allPokemonInfo , nextPage , prevPage  } = await (0, _api.getPokemonListFromCurrentPage)(BASE_URL);
-                setPokemonPage({
-                    allPokemonInfo,
-                    nextPage,
-                    prevPage
-                });
-                setIsLoading(false);
-            } catch (err) {
-                setError("Unable to fetch Pokemon list");
-                setIsLoading(false);
-            }
-        };
-        fetchFirstPage();
-    }, []);
-    const handleNextPage = async ()=>{
-        const { allPokemonInfo , nextPage , prevPage  } = await (0, _api.getPokemonListFromCurrentPage)(pokemonPage.nextPage ?? BASE_URL);
-        setPokemonPage((prevPageState)=>({
-                ...prevPageState,
-                allPokemonInfo,
-                nextPage,
-                prevPage
-            }));
-    };
-    const handlePrevPage = async ()=>{
-        if (pokemonPage.prevPage) {
-            const { allPokemonInfo , nextPage , prevPage  } = await (0, _api.getPokemonListFromCurrentPage)(pokemonPage.prevPage);
-            setPokemonPage((prevPageState)=>({
-                    ...prevPageState,
-                    allPokemonInfo,
-                    nextPage,
-                    prevPage
-                }));
+    const fetchData = async (offset)=>{
+        try {
+            const data = await (0, _api.fetchPokemonData)(offset);
+            setPokemonData(data);
+            setIsLoading(!isLoading);
+        } catch (error) {
+            setError("Unable to fetch Pokemon list");
+            setIsLoading(!isLoading);
         }
     };
-    if (isLoading) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        className: "loading-circle",
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
-                fileName: "src/routes/PokemonList/PokemonList.tsx",
-                lineNumber: 64,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
-                fileName: "src/routes/PokemonList/PokemonList.tsx",
-                lineNumber: 65,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
-                fileName: "src/routes/PokemonList/PokemonList.tsx",
-                lineNumber: 66,
-                columnNumber: 7
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
-                fileName: "src/routes/PokemonList/PokemonList.tsx",
-                lineNumber: 67,
-                columnNumber: 7
-            }, undefined)
-        ]
-    }, void 0, true, {
+    (0, _react.useEffect)(()=>{
+        fetchData(offset);
+    }, [
+        offset
+    ]);
+    const handleNextPage = ()=>{
+        if (pokemonData.next) {
+            const newOffset = (0, _helpers.extractOffsetFromUrl)(pokemonData.next);
+            const updatedOffset = (0, _helpers.handlePageChange)(newOffset, offset);
+            setOffset(updatedOffset);
+        }
+        setIsLoading(!isLoading);
+    };
+    const handlePrevPage = ()=>{
+        if (pokemonData.previous) {
+            const newOffset = (0, _helpers.extractOffsetFromUrl)(pokemonData.previous);
+            const updatedOffset = (0, _helpers.handlePageChange)(newOffset, offset);
+            setOffset(updatedOffset);
+        }
+        setIsLoading(!isLoading);
+    };
+    if (isLoading) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loadingSpinner.LoadingSpinner), {}, void 0, false, {
         fileName: "src/routes/PokemonList/PokemonList.tsx",
-        lineNumber: 63,
-        columnNumber: 5
+        lineNumber: 64,
+        columnNumber: 12
     }, undefined);
     if (error) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: error
     }, void 0, false, {
         fileName: "src/routes/PokemonList/PokemonList.tsx",
-        lineNumber: 73,
+        lineNumber: 68,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
@@ -32590,39 +32563,39 @@ const PokemonList = (props)=>{
                 className: "pokemon-list-container",
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                     className: "pokemon-list",
-                    children: pokemonPage.allPokemonInfo.map((pokemon)=>{
-                        return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _pokemonCard.PokemonCard), {
+                    children: pokemonData.results.map((pokemon)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _pokemonCard.PokemonCard), {
                             pokemon: pokemon,
                             onFavourite: props.onFavourite
                         }, pokemon.name, false, {
                             fileName: "src/routes/PokemonList/PokemonList.tsx",
-                            lineNumber: 81,
-                            columnNumber: 20
-                        }, undefined);
-                    })
+                            lineNumber: 76,
+                            columnNumber: 13
+                        }, undefined))
                 }, void 0, false, {
                     fileName: "src/routes/PokemonList/PokemonList.tsx",
-                    lineNumber: 79,
+                    lineNumber: 74,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/routes/PokemonList/PokemonList.tsx",
-                lineNumber: 78,
+                lineNumber: 73,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 className: "pokemon-list-btn-container",
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _.Button), {
+                        disabled: offset === 0,
                         onClick: handlePrevPage,
                         className: "icon-arrow-back",
                         icon: `./arrow-back.svg`
                     }, void 0, false, {
                         fileName: "src/routes/PokemonList/PokemonList.tsx",
-                        lineNumber: 86,
+                        lineNumber: 85,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _.Button), {
+                        disabled: (0, _helpers.isLastOffset)(offset, pokemonData.count, 20),
                         onClick: handleNextPage,
                         className: "icon-arrow-forward",
                         icon: `./arrow-forward.svg`
@@ -32634,13 +32607,17 @@ const PokemonList = (props)=>{
                 ]
             }, void 0, true, {
                 fileName: "src/routes/PokemonList/PokemonList.tsx",
-                lineNumber: 85,
+                lineNumber: 84,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true);
 };
-_s(PokemonList, "PpymdMymURMlEqWvKmfCr9nvOVY=");
+_s(PokemonList, "5wk3cvGcABTyenOiqml+4lC9LqA=", false, function() {
+    return [
+        (0, _helpers.useLoadingState)
+    ];
+});
 _c = PokemonList;
 exports.default = PokemonList;
 var _c;
@@ -32651,30 +32628,29 @@ $RefreshReg$(_c, "PokemonList");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../api/api":"kiSD7","../../components/PokemonCard":"h7EcF","./pokemonList.css":"iHZ8g","../../components/Button/":"i3jlU","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"kiSD7":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../api/api":"kiSD7","../../components/PokemonCard":"h7EcF","./pokemonList.css":"iHZ8g","../../components/Button/":"i3jlU","../../helpers":"adjmJ","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../../components/LoadingSpinner":"j00sc"}],"kiSD7":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "BASE_URL", ()=>BASE_URL);
 parcelHelpers.export(exports, "pokemonInstance", ()=>pokemonInstance);
-parcelHelpers.export(exports, "getPokemonListFromCurrentPage", ()=>getPokemonListFromCurrentPage);
+parcelHelpers.export(exports, "fetchPokemonData", ()=>fetchPokemonData);
 parcelHelpers.export(exports, "getPokemonDetail", ()=>getPokemonDetail);
 parcelHelpers.export(exports, "getFavourites", ()=>getFavourites);
 parcelHelpers.export(exports, "toggleFavourite", ()=>toggleFavourite);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
-const BASE_URL = "https://pokeapi.co/api/v2/pokemon";
 const pokemonInstance = (0, _axiosDefault.default).create({
     baseURL: "https://pokeapi.co/api/v2/pokemon"
 });
-const getPokemonListFromCurrentPage = async (currentPageUrl, limit = 20, offset = 0)=>{
+const fetchPokemonData = async (offset = 0)=>{
     try {
-        const response = await (0, _axiosDefault.default).get(currentPageUrl, {
+        const response = await pokemonInstance.get(// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        pokemonInstance.defaults.baseURL, {
             params: {
-                limit,
+                limit: 20,
                 offset
             }
         });
-        const { results , next , previous  } = response.data;
+        const { results , next , previous , count  } = response.data;
         const pokemonDetailPromises = results.map((pokemon)=>(0, _axiosDefault.default).get(pokemon.url).then((response)=>response.data));
         const allPokemonDetail = await Promise.all(pokemonDetailPromises);
         const allPokemonInfo = results.map((pokemon, index)=>({
@@ -32682,12 +32658,13 @@ const getPokemonListFromCurrentPage = async (currentPageUrl, limit = 20, offset 
                 ...allPokemonDetail[index]
             }));
         return {
-            allPokemonInfo,
-            nextPage: next,
-            prevPage: previous
+            results: allPokemonInfo,
+            next,
+            previous,
+            count
         };
     } catch (error) {
-        throw new Error("Failed to get Pokemon list.");
+        throw new Error("Failed to fetch Pokemon data");
     }
 };
 const getPokemonDetail = async (name)=>{
@@ -36946,6 +36923,7 @@ const Button = (props)=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("button", {
         onClick: props.onClick,
         className: props.className,
+        disabled: props.disabled,
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
             src: props.icon,
             alt: "icon",
@@ -36954,12 +36932,12 @@ const Button = (props)=>{
             }
         }, void 0, false, {
             fileName: "src/components/Button/Button.tsx",
-            lineNumber: 13,
+            lineNumber: 18,
             columnNumber: 7
         }, undefined)
     }, void 0, false, {
         fileName: "src/components/Button/Button.tsx",
-        lineNumber: 12,
+        lineNumber: 13,
         columnNumber: 5
     }, undefined);
 };
@@ -37106,7 +37084,120 @@ function registerExportsForReactRefresh(module1) {
     }
 }
 
-},{"44e885a9d377098e":"786KC"}],"iHZ8g":[function() {},{}],"38MWl":[function(require,module,exports) {
+},{"44e885a9d377098e":"786KC"}],"iHZ8g":[function() {},{}],"adjmJ":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$b53d = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$b53d.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "handlePageChange", ()=>handlePageChange);
+parcelHelpers.export(exports, "extractOffsetFromUrl", ()=>extractOffsetFromUrl);
+parcelHelpers.export(exports, "useLoadingState", ()=>useLoadingState);
+parcelHelpers.export(exports, "isLastOffset", ()=>isLastOffset);
+var _react = require("react");
+const handlePageChange = (newOffset, currentOffset)=>{
+    if (newOffset !== null) return newOffset;
+    return currentOffset;
+};
+const extractOffsetFromUrl = (url)=>{
+    const urlParams = new URL(url);
+    const offset = urlParams.searchParams.get("offset");
+    return offset !== null ? Number(offset) : null;
+};
+const useLoadingState = (initialState = true)=>{
+    const [isLoading, setIsLoading] = (0, _react.useState)(initialState);
+    (0, _react.useEffect)(()=>{
+        setIsLoading(true);
+    }, []);
+    return {
+        isLoading,
+        setIsLoading
+    };
+};
+const isLastOffset = (offset, totalItems, pageSize)=>{
+    // Calculate the expected number of items in the last page
+    const lastPageSize = totalItems % pageSize;
+    // If the last page has fewer items than the page size, it's the last offset
+    return lastPageSize !== 0 && offset + pageSize >= totalItems;
+};
+
+  $parcel$ReactRefreshHelpers$b53d.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"j00sc":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "LoadingSpinner", ()=>(0, _loadingSpinnerDefault.default));
+var _loadingSpinner = require("./LoadingSpinner");
+var _loadingSpinnerDefault = parcelHelpers.interopDefault(_loadingSpinner);
+
+},{"./LoadingSpinner":"3UzfR","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"3UzfR":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$9f0f = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$9f0f.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _loadingSpinnerCss = require("./LoadingSpinner.css");
+const LoadingSpinner = ()=>{
+    return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+        className: "loading-container",
+        children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
+            className: "loading-circle",
+            children: [
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
+                    fileName: "src/components/LoadingSpinner/LoadingSpinner.tsx",
+                    lineNumber: 8,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
+                    fileName: "src/components/LoadingSpinner/LoadingSpinner.tsx",
+                    lineNumber: 9,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
+                    fileName: "src/components/LoadingSpinner/LoadingSpinner.tsx",
+                    lineNumber: 10,
+                    columnNumber: 9
+                }, undefined),
+                /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
+                    fileName: "src/components/LoadingSpinner/LoadingSpinner.tsx",
+                    lineNumber: 11,
+                    columnNumber: 9
+                }, undefined)
+            ]
+        }, void 0, true, {
+            fileName: "src/components/LoadingSpinner/LoadingSpinner.tsx",
+            lineNumber: 7,
+            columnNumber: 7
+        }, undefined)
+    }, void 0, false, {
+        fileName: "src/components/LoadingSpinner/LoadingSpinner.tsx",
+        lineNumber: 6,
+        columnNumber: 5
+    }, undefined);
+};
+_c = LoadingSpinner;
+exports.default = LoadingSpinner;
+var _c;
+$RefreshReg$(_c, "LoadingSpinner");
+
+  $parcel$ReactRefreshHelpers$9f0f.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","./LoadingSpinner.css":"ivjCL","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"ivjCL":[function() {},{}],"38MWl":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Pages", ()=>Pages);
@@ -37213,12 +37304,14 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactRouterDom = require("react-router-dom");
 var _api = require("../../api/api");
 var _pokemonCardDetail = require("../../components/PokemonCardDetail");
+var _loadingSpinner = require("../../components/LoadingSpinner");
+var _helpers = require("../../helpers");
 var _s = $RefreshSig$();
 const PokemonDetail = ()=>{
     _s();
     const { pokemonName  } = (0, _reactRouterDom.useParams)();
     const [pokemon, setPokemon] = (0, _react.useState)();
-    const [isLoading, setIsLoading] = (0, _react.useState)(true);
+    const { isLoading , setIsLoading  } = (0, _helpers.useLoadingState)();
     const [error, setError] = (0, _react.useState)("");
     (0, _react.useEffect)(()=>{
         const fetchPokemon = async ()=>{
@@ -37229,64 +37322,41 @@ const PokemonDetail = ()=>{
                         const pokemonData = response.data;
                         setPokemon(pokemonData);
                     }
-                    setIsLoading(false);
+                    setIsLoading(!isLoading);
                 }
             } catch (error) {
                 setError("Unable to fetch Pokemon");
-                setIsLoading(false);
             }
+            setIsLoading(!isLoading);
         };
         fetchPokemon();
     }, [
         pokemonName
     ]);
-    if (!pokemon || isLoading) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
-        className: "loading-circle",
-        children: [
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
-                fileName: "src/routes/PokemonDetail/PokemonDetail.tsx",
-                lineNumber: 35,
-                columnNumber: 5
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
-                fileName: "src/routes/PokemonDetail/PokemonDetail.tsx",
-                lineNumber: 36,
-                columnNumber: 5
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
-                fileName: "src/routes/PokemonDetail/PokemonDetail.tsx",
-                lineNumber: 37,
-                columnNumber: 5
-            }, undefined),
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {}, void 0, false, {
-                fileName: "src/routes/PokemonDetail/PokemonDetail.tsx",
-                lineNumber: 38,
-                columnNumber: 5
-            }, undefined)
-        ]
-    }, void 0, true, {
+    if (!pokemon || isLoading) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loadingSpinner.LoadingSpinner), {}, void 0, false, {
         fileName: "src/routes/PokemonDetail/PokemonDetail.tsx",
-        lineNumber: 34,
-        columnNumber: 13
+        lineNumber: 36,
+        columnNumber: 12
     }, undefined);
     if (error) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: error
     }, void 0, false, {
         fileName: "src/routes/PokemonDetail/PokemonDetail.tsx",
-        lineNumber: 43,
+        lineNumber: 40,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _pokemonCardDetail.PokemonCardDetail), {
         pokemon: pokemon
     }, void 0, false, {
         fileName: "src/routes/PokemonDetail/PokemonDetail.tsx",
-        lineNumber: 46,
+        lineNumber: 43,
         columnNumber: 10
     }, undefined);
 };
-_s(PokemonDetail, "2DTarmjoZNouyTJVRS1VfMXcxGw=", false, function() {
+_s(PokemonDetail, "ArfAzL18MhQ/suRaHgk4WF4uqBc=", false, function() {
     return [
-        (0, _reactRouterDom.useParams)
+        (0, _reactRouterDom.useParams),
+        (0, _helpers.useLoadingState)
     ];
 });
 _c = PokemonDetail;
@@ -37299,7 +37369,7 @@ $RefreshReg$(_c, "PokemonDetail");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","../../api/api":"kiSD7","../../components/PokemonCardDetail":"btuzC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"btuzC":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","../../api/api":"kiSD7","../../components/PokemonCardDetail":"btuzC","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../../components/LoadingSpinner":"j00sc","../../helpers":"adjmJ"}],"btuzC":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "PokemonCardDetail", ()=>(0, _pokemonCardDetailDefault.default));

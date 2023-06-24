@@ -51,6 +51,13 @@
   right: 40px;
 }
 
+.loading-container {
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
 .header-link {
   color: #fff;
   text-decoration: none;
@@ -130,6 +137,7 @@
 }
 
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: Inter, sans-serif;
@@ -143,7 +151,6 @@
 }
 
 .loading-circle div {
-  box-sizing: border-box;
   width: 64px;
   height: 64px;
   border: 8px solid #0000;
