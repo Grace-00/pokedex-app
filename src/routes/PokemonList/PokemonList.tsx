@@ -41,7 +41,7 @@ const PokemonList: FC<PokemonListProps> = (props: PokemonListProps) => {
   useEffect(() => {
     fetchData(offset)
   }, [offset])
-  console.log(pokemonData.count)
+
   const handleNextPage = () => {
     if (pokemonData.next) {
       const newOffset = extractOffsetFromUrl(pokemonData.next)
