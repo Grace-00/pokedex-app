@@ -32549,14 +32549,14 @@ const PokemonList = (props)=>{
     };
     if (isLoading) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _loadingSpinner.LoadingSpinner), {}, void 0, false, {
         fileName: "src/routes/PokemonList/PokemonList.tsx",
-        lineNumber: 64,
+        lineNumber: 65,
         columnNumber: 12
     }, undefined);
     if (error) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         children: error
     }, void 0, false, {
         fileName: "src/routes/PokemonList/PokemonList.tsx",
-        lineNumber: 68,
+        lineNumber: 69,
         columnNumber: 12
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
@@ -32567,20 +32567,21 @@ const PokemonList = (props)=>{
                     className: "pokemon-list",
                     children: pokemonData.results.map((pokemon)=>/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _pokemonCard.PokemonCard), {
                             pokemon: pokemon,
-                            onFavourite: props.onFavourite
+                            onFavourite: props.onFavourite,
+                            favourites: props.favourites
                         }, pokemon.name, false, {
                             fileName: "src/routes/PokemonList/PokemonList.tsx",
-                            lineNumber: 76,
+                            lineNumber: 77,
                             columnNumber: 13
                         }, undefined))
                 }, void 0, false, {
                     fileName: "src/routes/PokemonList/PokemonList.tsx",
-                    lineNumber: 74,
+                    lineNumber: 75,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/routes/PokemonList/PokemonList.tsx",
-                lineNumber: 73,
+                lineNumber: 74,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -32595,7 +32596,7 @@ const PokemonList = (props)=>{
                         }, void 0, false, void 0, void 0)
                     }, void 0, false, {
                         fileName: "src/routes/PokemonList/PokemonList.tsx",
-                        lineNumber: 85,
+                        lineNumber: 87,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _.Button), {
@@ -32607,13 +32608,13 @@ const PokemonList = (props)=>{
                         }, void 0, false, void 0, void 0)
                     }, void 0, false, {
                         fileName: "src/routes/PokemonList/PokemonList.tsx",
-                        lineNumber: 91,
+                        lineNumber: 93,
                         columnNumber: 9
                     }, undefined)
                 ]
             }, void 0, true, {
                 fileName: "src/routes/PokemonList/PokemonList.tsx",
-                lineNumber: 84,
+                lineNumber: 86,
                 columnNumber: 7
             }, undefined)
         ]
