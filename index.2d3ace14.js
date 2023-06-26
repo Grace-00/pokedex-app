@@ -32423,7 +32423,8 @@ const EntryPoint = ()=>{
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
                         path: (0, _types.Pages).PokemonList,
                         element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _pokemonList.PokemonList), {
-                            onFavourite: handleFavourite
+                            onFavourite: handleFavourite,
+                            favourites: favourites
                         }, void 0, false, void 0, void 0)
                     }, void 0, false, {
                         fileName: "src/EntryPoint.tsx",
@@ -32435,7 +32436,7 @@ const EntryPoint = ()=>{
                         element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _pokemonDetail.PokemonDetail), {}, void 0, false, void 0, void 0)
                     }, void 0, false, {
                         fileName: "src/EntryPoint.tsx",
-                        lineNumber: 39,
+                        lineNumber: 44,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -32446,7 +32447,7 @@ const EntryPoint = ()=>{
                         }, void 0, false, void 0, void 0)
                     }, void 0, false, {
                         fileName: "src/EntryPoint.tsx",
-                        lineNumber: 40,
+                        lineNumber: 45,
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.Route), {
@@ -32454,7 +32455,7 @@ const EntryPoint = ()=>{
                         element: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _notFound.NotFound), {}, void 0, false, void 0, void 0)
                     }, void 0, false, {
                         fileName: "src/EntryPoint.tsx",
-                        lineNumber: 46,
+                        lineNumber: 51,
                         columnNumber: 9
                     }, undefined)
                 ]
@@ -36840,13 +36841,21 @@ var _reactRouterDom = require("react-router-dom");
 var _button = require("../Button");
 var _ai = require("react-icons/ai");
 var _s = $RefreshSig$();
-const PokemonCard = ({ pokemon , onFavourite  })=>{
+const PokemonCard = ({ pokemon , onFavourite , favourites  })=>{
     _s();
-    const frontDefaultImage = pokemon.sprites?.front_default || "img not found";
-    const [isIconClicked, setIsIconClicked] = (0, _react.useState)(false);
+    const frontDefaultImage = pokemon.sprites?.front_default;
+    const [isHeartClicked, setIsHeartClicked] = (0, _react.useState)(localStorage.getItem(`isHeartClicked${pokemon.name}`) === "true" || false);
+    (0, _react.useEffect)(()=>{
+        if (!favourites.some((favPokemon)=>favPokemon.name === pokemon.name)) setIsHeartClicked(false);
+        localStorage.setItem(`isHeartClicked${pokemon.name}`, isHeartClicked.toString());
+    }, [
+        isHeartClicked,
+        pokemon.name,
+        favourites
+    ]);
     const handleFavourite = ()=>{
         onFavourite(pokemon);
-        setIsIconClicked(!isIconClicked);
+        setIsHeartClicked(!isHeartClicked);
     };
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
         className: "pokemon-card-container",
@@ -36861,7 +36870,7 @@ const PokemonCard = ({ pokemon , onFavourite  })=>{
                             children: pokemon.name
                         }, void 0, false, {
                             fileName: "src/components/PokemonCard/pokemonCard.tsx",
-                            lineNumber: 25,
+                            lineNumber: 42,
                             columnNumber: 11
                         }, undefined),
                         /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
@@ -36869,23 +36878,23 @@ const PokemonCard = ({ pokemon , onFavourite  })=>{
                             alt: `image of: ${pokemon.name}`
                         }, void 0, false, {
                             fileName: "src/components/PokemonCard/pokemonCard.tsx",
-                            lineNumber: 26,
+                            lineNumber: 43,
                             columnNumber: 11
                         }, undefined)
                     ]
                 }, void 0, true, {
                     fileName: "src/components/PokemonCard/pokemonCard.tsx",
-                    lineNumber: 24,
+                    lineNumber: 41,
                     columnNumber: 9
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/PokemonCard/pokemonCard.tsx",
-                lineNumber: 23,
+                lineNumber: 40,
                 columnNumber: 7
             }, undefined),
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _button.Button), {
                 disabled: false,
-                icon: isIconClicked ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _ai.AiFillHeart), {
+                icon: isHeartClicked ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _ai.AiFillHeart), {
                     size: 24,
                     style: {
                         animation: "fillHeart 2s linear forwards"
@@ -36898,17 +36907,17 @@ const PokemonCard = ({ pokemon , onFavourite  })=>{
                 onClick: handleFavourite
             }, void 0, false, {
                 fileName: "src/components/PokemonCard/pokemonCard.tsx",
-                lineNumber: 29,
+                lineNumber: 46,
                 columnNumber: 7
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/PokemonCard/pokemonCard.tsx",
-        lineNumber: 22,
+        lineNumber: 39,
         columnNumber: 5
     }, undefined);
 };
-_s(PokemonCard, "4ukQopovPVMCKoCNLtw7LRiSRTo=");
+_s(PokemonCard, "zWCt9nJquEshixAvwoAXmz8DGDg=");
 _c = PokemonCard;
 exports.default = PokemonCard;
 var _c;
@@ -53967,7 +53976,8 @@ const Favourites = (props)=>{
                 children: props.favourites.map((pokemon)=>{
                     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _pokemonCard.PokemonCard), {
                         pokemon: pokemon,
-                        onFavourite: props.onFavourite
+                        onFavourite: props.onFavourite,
+                        favourites: props.favourites
                     }, pokemon.name, false, {
                         fileName: "src/Favourites/Favourites.tsx",
                         lineNumber: 20,
