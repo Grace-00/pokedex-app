@@ -33,7 +33,12 @@ const EntryPoint = () => {
       <Routes>
         <Route
           path={Pages.PokemonList}
-          element={<PokemonList onFavourite={handleFavourite} />}
+          element={
+            <PokemonList
+              onFavourite={handleFavourite}
+              favourites={favourites}
+            />
+          }
         />
 
         <Route path={Pages.PokemonCard} element={<PokemonDetail />} />

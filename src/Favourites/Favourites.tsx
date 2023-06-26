@@ -21,6 +21,7 @@ const Favourites: FC<FavouritesProps> = (props: FavouritesProps) => {
                 key={pokemon.name}
                 pokemon={pokemon}
                 onFavourite={props.onFavourite}
+                favourites={props.favourites}
               />
             )
           })}

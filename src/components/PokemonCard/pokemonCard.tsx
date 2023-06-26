@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import './pokemonCard.css'
 import { Link } from 'react-router-dom'
 import { Pokemon } from '../../types'
@@ -7,15 +7,32 @@ import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
 export interface PokemonCardProps {
   readonly pokemon: Pokemon
   readonly onFavourite: (pokemon: Pokemon) => void
+  readonly favourites: Pokemon[]
 }
 
-const PokemonCard: FC<PokemonCardProps> = ({ pokemon, onFavourite }) => {
-  const frontDefaultImage = pokemon.sprites?.front_default || 'img not found'
-  const [isIconClicked, setIsIconClicked] = useState(false)
+const PokemonCard: FC<PokemonCardProps> = ({
+  pokemon,
+  onFavourite,
+  favourites,
+}) => {
+  const frontDefaultImage = pokemon.sprites?.front_default
+  const [isHeartClicked, setIsHeartClicked] = useState(
+    localStorage.getItem(`isHeartClicked${pokemon.name}`) === 'true' || false
+  )
+
+  useEffect(() => {
+    if (!favourites.some((favPokemon) => favPokemon.name === pokemon.name)) {
+      setIsHeartClicked(false)
+    }
+    localStorage.setItem(
+      `isHeartClicked${pokemon.name}`,
+      isHeartClicked.toString()
+    )
+  }, [isHeartClicked, pokemon.name, favourites])
 
   const handleFavourite = () => {
     onFavourite(pokemon)
-    setIsIconClicked(!isIconClicked)
+    setIsHeartClicked(!isHeartClicked)
   }
 
   return (
@@ -29,7 +46,7 @@ const PokemonCard: FC<PokemonCardProps> = ({ pokemon, onFavourite }) => {
       <Button
         disabled={false}
         icon={
-          isIconClicked ? (
+          isHeartClicked ? (
             <AiFillHeart
               size={24}
               style={{

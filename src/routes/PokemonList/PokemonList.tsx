@@ -14,6 +14,7 @@ import { LoadingSpinner } from '../../components/LoadingSpinner'
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from 'react-icons/ai'
 export interface PokemonListProps {
   readonly onFavourite: (pokemon: Pokemon) => void
+  readonly favourites: Pokemon[]
 }
 
 const PokemonList: FC<PokemonListProps> = (props: PokemonListProps) => {
@@ -77,6 +78,7 @@ const PokemonList: FC<PokemonListProps> = (props: PokemonListProps) => {
               key={pokemon.name}
               pokemon={pokemon}
               onFavourite={props.onFavourite}
+              favourites={props.favourites}
             />
           ))}
         </div>
