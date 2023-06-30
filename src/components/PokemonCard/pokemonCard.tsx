@@ -1,38 +1,41 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect } from 'react'
 import './pokemonCard.css'
 import { Link } from 'react-router-dom'
 import { Pokemon } from '../../types'
 import { Button } from '../Button'
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai'
+import { addFavorite, removeFavorite } from '../../redux/slices/favouritesSlice'
+import { useAppDispatch, useAppSelector } from '../../redux/selectors'
 export interface PokemonCardProps {
   readonly pokemon: Pokemon
-  readonly onFavourite: (pokemon: Pokemon) => void
-  readonly favourites: Pokemon[]
 }
 
-const PokemonCard: FC<PokemonCardProps> = ({
-  pokemon,
-  onFavourite,
-  favourites,
-}) => {
+const PokemonCard: FC<PokemonCardProps> = ({ pokemon }) => {
   const frontDefaultImage = pokemon.sprites?.front_default
-  const [isHeartClicked, setIsHeartClicked] = useState(
-    localStorage.getItem(`isHeartClicked${pokemon.name}`) === 'true' || false
-  )
+  const favourites = useAppSelector((state) => state.favorites.favorites)
+  const isFavourite = favourites.includes(pokemon)
+  const dispatch = useAppDispatch()
 
   useEffect(() => {
-    if (!favourites.some((favPokemon) => favPokemon.name === pokemon.name)) {
-      setIsHeartClicked(false)
+    const isFav = localStorage.getItem(`isFavourite-${pokemon.name}`)
+    if (isFav !== null) {
+      const storedIsFavourite = JSON.parse(isFav)
+      if (storedIsFavourite !== isFavourite) {
+        storedIsFavourite
+          ? dispatch(addFavorite(pokemon))
+          : dispatch(removeFavorite(pokemon))
+      }
     }
-    localStorage.setItem(
-      `isHeartClicked${pokemon.name}`,
-      isHeartClicked.toString()
-    )
-  }, [isHeartClicked, pokemon.name, favourites])
+  }, [pokemon.name, isFavourite, dispatch, pokemon])
 
   const handleFavourite = () => {
-    onFavourite(pokemon)
-    setIsHeartClicked(!isHeartClicked)
+    if (!isFavourite) {
+      dispatch(addFavorite(pokemon))
+      localStorage.setItem(`isFavourite-${pokemon.name}`, 'true')
+    } else {
+      dispatch(removeFavorite(pokemon))
+      localStorage.setItem(`isFavourite-${pokemon.name}`, 'false')
+    }
   }
 
   return (
@@ -46,7 +49,7 @@ const PokemonCard: FC<PokemonCardProps> = ({
       <Button
         disabled={false}
         icon={
-          isHeartClicked ? (
+          isFavourite ? (
             <AiFillHeart
               size={24}
               style={{

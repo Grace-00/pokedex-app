@@ -12,12 +12,8 @@ import {
 } from '../../helpers'
 import { LoadingSpinner } from '../../components/LoadingSpinner'
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from 'react-icons/ai'
-export interface PokemonListProps {
-  readonly onFavourite: (pokemon: Pokemon) => void
-  readonly favourites: Pokemon[]
-}
 
-const PokemonList: FC<PokemonListProps> = (props: PokemonListProps) => {
+const PokemonList: FC = () => {
   const [pokemonData, setPokemonData] = useState<PokemonPage>({
     results: [],
     next: null,
@@ -27,6 +23,8 @@ const PokemonList: FC<PokemonListProps> = (props: PokemonListProps) => {
   const [offset, setOffset] = useState(0)
   const { isLoading, setIsLoading } = useLoadingState()
   const [error, setError] = useState('')
+  const isPrevPage = offset === 0
+  const isLastPage = isLastOffset(offset, pokemonData.count, 20)
 
   const fetchData = async (offset: number) => {
     try {
@@ -74,24 +72,19 @@ const PokemonList: FC<PokemonListProps> = (props: PokemonListProps) => {
       <div className="pokemon-list-container">
         <div className="pokemon-list">
           {pokemonData.results.map((pokemon: Pokemon) => (
-            <PokemonCard
-              key={pokemon.name}
-              pokemon={pokemon}
-              onFavourite={props.onFavourite}
-              favourites={props.favourites}
-            />
+            <PokemonCard key={pokemon.name} pokemon={pokemon} />
           ))}
         </div>
       </div>
       <div className="pokemon-list-btn-container">
         <Button
-          disabled={offset === 0}
+          disabled={isPrevPage}
           onClick={handlePrevPage}
           className={'icon-arrow-back'}
           icon={<AiOutlineArrowLeft size={24} />}
         />
         <Button
-          disabled={isLastOffset(offset, pokemonData.count, 20)}
+          disabled={isLastPage}
           onClick={handleNextPage}
           className={'icon-arrow-forward'}
           icon={<AiOutlineArrowRight size={24} />}

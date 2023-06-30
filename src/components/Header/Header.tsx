@@ -2,18 +2,17 @@ import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
 import { Pages } from '../../types'
 import './header.css'
+import { useAppSelector } from '../../redux/selectors'
 
-export interface HeaderProps {
-  readonly hasFavourites: boolean
-}
+const Header: FC = () => {
+  const favorites = useAppSelector((state) => state.favorites.favorites)
 
-const Header: FC<HeaderProps> = (props: HeaderProps) =>  {
   return (
     <header className="header">
       <Link to={Pages.PokemonList} className="header-link">
         <h1>Pokedex</h1>
       </Link>
-      {props.hasFavourites && (
+      {favorites.length > 0 && (
         <Link to={Pages.Favourites} className="header-link">
           <h1>Favourites</h1>
         </Link>
