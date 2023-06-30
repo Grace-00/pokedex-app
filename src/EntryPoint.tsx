@@ -5,7 +5,7 @@ import { Pages } from './types'
 import { Header } from './components/Header'
 import { PokemonDetail } from './routes/PokemonDetail'
 import { NotFound } from './routes/NotFound'
-import { Favourites } from './Favourites'
+import { Favourites } from './routes/Favourites'
 
 const EntryPoint = () => {
   return (

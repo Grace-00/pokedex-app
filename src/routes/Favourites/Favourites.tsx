@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
-import { PokemonCard } from '../components/PokemonCard'
-import { useAppSelector } from '../redux/selectors'
+import { PokemonCard } from '../../components/PokemonCard'
+import { useAppSelector } from '../../redux/selectors'
 
 const Favourites: FC = () => {
   const favorites = useAppSelector((state) => state.favorites.favorites)
