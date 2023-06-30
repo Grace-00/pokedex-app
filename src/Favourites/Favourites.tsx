@@ -1,12 +1,6 @@
 import React, { FC } from 'react'
-import { Pokemon } from '../types'
 import { PokemonCard } from '../components/PokemonCard'
 import { useAppSelector } from '../redux/selectors'
-
-// export interface FavouritesProps {
-//   readonly favourites: Pokemon[]
-//   readonly onFavourite: (pokemon: Pokemon) => void
-// }
 
 const Favourites: FC = () => {
   const favorites = useAppSelector((state) => state.favorites.favorites)
@@ -18,14 +12,7 @@ const Favourites: FC = () => {
       ) : (
         <div className="pokemon-list">
           {favorites.map((pokemon) => {
-            return (
-              <PokemonCard
-                key={pokemon.name}
-                pokemon={pokemon}
-                // onFavourite={props.onFavourite}
-                // favourites={props.favourites}
-              />
-            )
+            return <PokemonCard key={pokemon.name} pokemon={pokemon} />
           })}
         </div>
       )}
