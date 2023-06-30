@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import './pokemonCard.css'
 import { Link } from 'react-router-dom'
 import { Pokemon } from '../../types'
@@ -11,30 +11,27 @@ export interface PokemonCardProps {
 }
 
 const PokemonCard: FC<PokemonCardProps> = ({ pokemon }) => {
+  const dispatch = useAppDispatch()
   const frontDefaultImage = pokemon.sprites?.front_default
   const favourites = useAppSelector((state) => state.favorites.favorites)
   const isFavourite = favourites.includes(pokemon)
-  const dispatch = useAppDispatch()
+  const [isHeartClicked, setIsHeartClicked] = useState(isFavourite)
 
   useEffect(() => {
-    const isFav = localStorage.getItem(`isFavourite-${pokemon.name}`)
-    if (isFav !== null) {
-      const storedIsFavourite = JSON.parse(isFav)
-      if (storedIsFavourite !== isFavourite) {
-        storedIsFavourite
-          ? dispatch(addFavorite(pokemon))
-          : dispatch(removeFavorite(pokemon))
-      }
-    }
-  }, [pokemon.name, isFavourite, dispatch, pokemon])
+    const storedIsHeartClicked =
+      localStorage.getItem(`isHeartClicked-${pokemon.name}`) === 'true'
+    setIsHeartClicked(storedIsHeartClicked)
+  }, [pokemon.name])
 
   const handleFavourite = () => {
-    if (!isFavourite) {
+    if (!isHeartClicked) {
       dispatch(addFavorite(pokemon))
-      localStorage.setItem(`isFavourite-${pokemon.name}`, 'true')
+      setIsHeartClicked(true)
+      localStorage.setItem(`isHeartClicked-${pokemon.name}`, 'true')
     } else {
       dispatch(removeFavorite(pokemon))
-      localStorage.setItem(`isFavourite-${pokemon.name}`, 'false')
+      setIsHeartClicked(false)
+      localStorage.setItem(`isHeartClicked-${pokemon.name}`, 'false')
     }
   }
 
@@ -49,7 +46,7 @@ const PokemonCard: FC<PokemonCardProps> = ({ pokemon }) => {
       <Button
         disabled={false}
         icon={
-          isFavourite ? (
+          isHeartClicked ? (
             <AiFillHeart
               size={24}
               style={{
