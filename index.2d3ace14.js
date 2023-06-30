@@ -32400,7 +32400,7 @@ var _types = require("./types");
 var _header = require("./components/Header");
 var _pokemonDetail = require("./routes/PokemonDetail");
 var _notFound = require("./routes/NotFound");
-var _favourites = require("./Favourites");
+var _favourites = require("./routes/Favourites");
 const EntryPoint = ()=>{
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _jsxDevRuntime.Fragment), {
         children: [
@@ -32462,7 +32462,7 @@ $RefreshReg$(_c, "EntryPoint");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","./routes/PokemonList":"bb2Bq","./types":"38MWl","./components/Header":"kkCkM","./routes/PokemonDetail":"1U19X","./routes/NotFound":"9OAbH","./Favourites":"VJnBq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bb2Bq":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"9xmpe","./routes/PokemonList":"bb2Bq","./types":"38MWl","./components/Header":"kkCkM","./routes/PokemonDetail":"1U19X","./routes/NotFound":"9OAbH","./routes/Favourites":"kfHIB","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bb2Bq":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "PokemonList", ()=>(0, _pokemonListDefault.default));
@@ -53455,8 +53455,8 @@ var _reselect = require("reselect");
 // src/getDefaultMiddleware.ts
 var _reduxThunk = require("redux-thunk");
 var _reduxThunkDefault = parcelHelpers.interopDefault(_reduxThunk);
-var process = require("af3e2de2bbb36d86");
 var global = arguments[3];
+var process = require("af3e2de2bbb36d86");
 var __extends = undefined && undefined.__extends || function() {
     var extendStatics = function(d, b) {
         extendStatics = Object.setPrototypeOf || ({
@@ -59661,18 +59661,18 @@ $RefreshReg$(_c, "NotFound");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"VJnBq":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"kfHIB":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Favourites", ()=>(0, _favouritesDefault.default));
 var _favourites = require("./Favourites");
 var _favouritesDefault = parcelHelpers.interopDefault(_favourites);
 
-},{"./Favourites":"het4J","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"het4J":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$d46a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+},{"./Favourites":"iAm6j","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"iAm6j":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$db53 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$d46a.prelude(module);
+$parcel$ReactRefreshHelpers$db53.prelude(module);
 
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -59680,8 +59680,8 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-var _pokemonCard = require("../components/PokemonCard");
-var _selectors = require("../redux/selectors");
+var _pokemonCard = require("../../components/PokemonCard");
+var _selectors = require("../../redux/selectors");
 var _s = $RefreshSig$();
 const Favourites = ()=>{
     _s();
@@ -59692,14 +59692,14 @@ const Favourites = ()=>{
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("h1", {
                 children: "Favourites"
             }, void 0, false, {
-                fileName: "src/Favourites/Favourites.tsx",
+                fileName: "src/routes/Favourites/Favourites.tsx",
                 lineNumber: 9,
                 columnNumber: 7
             }, undefined),
             favorites.length === 0 ? /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("p", {
                 children: "You have no favourites yet."
             }, void 0, false, {
-                fileName: "src/Favourites/Favourites.tsx",
+                fileName: "src/routes/Favourites/Favourites.tsx",
                 lineNumber: 11,
                 columnNumber: 9
             }, undefined) : /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -59708,19 +59708,19 @@ const Favourites = ()=>{
                     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _pokemonCard.PokemonCard), {
                         pokemon: pokemon
                     }, pokemon.name, false, {
-                        fileName: "src/Favourites/Favourites.tsx",
+                        fileName: "src/routes/Favourites/Favourites.tsx",
                         lineNumber: 15,
                         columnNumber: 20
                     }, undefined);
                 })
             }, void 0, false, {
-                fileName: "src/Favourites/Favourites.tsx",
+                fileName: "src/routes/Favourites/Favourites.tsx",
                 lineNumber: 13,
                 columnNumber: 9
             }, undefined)
         ]
     }, void 0, true, {
-        fileName: "src/Favourites/Favourites.tsx",
+        fileName: "src/routes/Favourites/Favourites.tsx",
         lineNumber: 8,
         columnNumber: 5
     }, undefined);
@@ -59735,12 +59735,12 @@ exports.default = Favourites;
 var _c;
 $RefreshReg$(_c, "Favourites");
 
-  $parcel$ReactRefreshHelpers$d46a.postlude(module);
+  $parcel$ReactRefreshHelpers$db53.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../components/PokemonCard":"h7EcF","../redux/selectors":"hdhvx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"irmnC":[function() {},{}],"bQq0Z":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../components/PokemonCard":"h7EcF","../../redux/selectors":"hdhvx","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"irmnC":[function() {},{}],"bQq0Z":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "store", ()=>store);
