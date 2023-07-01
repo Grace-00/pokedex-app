@@ -25,15 +25,3 @@ export const useLoadingState = (initialState = true) => {
 
   return { isLoading, setIsLoading }
 }
-
-export const isLastOffset = (
-  offset: number,
-  totalItems: number,
-  pageSize: number
-): boolean => {
-  // Calculate the expected number of items in the last page
-  const lastPageSize = totalItems % pageSize
-
-  // If the last page has fewer items than the page size, it's the last offset
-  return lastPageSize !== 0 && offset + pageSize >= totalItems
-}

@@ -7,7 +7,6 @@ import { Pokemon, PokemonPage } from '../../types'
 import {
   extractOffsetFromUrl,
   handlePageChange,
-  isLastOffset,
   useLoadingState,
 } from '../../helpers'
 import { LoadingSpinner } from '../../components/LoadingSpinner'
@@ -23,8 +22,6 @@ const PokemonList: FC = () => {
   const [offset, setOffset] = useState(0)
   const { isLoading, setIsLoading } = useLoadingState()
   const [error, setError] = useState('')
-  const isPrevPage = offset === 0
-  const isLastPage = isLastOffset(offset, pokemonData.count, 20)
 
   const fetchData = async (offset: number) => {
     try {
@@ -78,13 +75,13 @@ const PokemonList: FC = () => {
       </div>
       <div className="pokemon-list-btn-container">
         <Button
-          disabled={isPrevPage}
+          disabled={!pokemonData.previous}
           onClick={handlePrevPage}
           className={'icon-arrow-back'}
           icon={<AiOutlineArrowLeft size={24} />}
         />
         <Button
-          disabled={isLastPage}
+          disabled={!pokemonData.next}
           onClick={handleNextPage}
           className={'icon-arrow-forward'}
           icon={<AiOutlineArrowRight size={24} />}
