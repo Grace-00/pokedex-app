@@ -2941,10 +2941,10 @@ root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactDefault.default).
     children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRedux.Provider), {
         store: (0, _store.store),
         children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.BrowserRouter), {
-            basename: document.baseURI.substring(document.baseURI.indexOf(window.location.origin) + window.location.origin.length, document.baseURI.lastIndexOf("/")),
+            basename: "/pokedex-app",
             children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _entryPointDefault.default), {}, void 0, false, {
                 fileName: "src/index.tsx",
-                lineNumber: 21,
+                lineNumber: 15,
                 columnNumber: 9
             }, undefined)
         }, void 0, false, {
