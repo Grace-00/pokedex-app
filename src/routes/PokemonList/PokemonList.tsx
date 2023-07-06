@@ -1,60 +1,15 @@
-import React, { useState, useEffect, FC } from 'react'
-import { fetchPokemonData } from '../../api/api'
+import React, { FC } from 'react'
 import { PokemonCard } from '../../components/PokemonCard'
 import './pokemonList.css'
 import { Button } from '../../components/Button/'
-import { Pokemon, PokemonPage } from '../../types'
-import {
-  extractOffsetFromUrl,
-  handlePageChange,
-  useLoadingState,
-} from '../../helpers'
+import { Pokemon } from '../../types'
+import { usePagination, usePokemonData } from '../../helpers'
 import { LoadingSpinner } from '../../components/LoadingSpinner'
 import { AiOutlineArrowRight, AiOutlineArrowLeft } from 'react-icons/ai'
 
 const PokemonList: FC = () => {
-  const [pokemonData, setPokemonData] = useState<PokemonPage>({
-    results: [],
-    next: null,
-    previous: null,
-    count: 0,
-  })
-  const [offset, setOffset] = useState(0)
-  const { isLoading, setIsLoading } = useLoadingState()
-  const [error, setError] = useState('')
-
-  const fetchData = async (offset: number) => {
-    try {
-      const data = await fetchPokemonData(offset)
-      setPokemonData(data)
-      setIsLoading(!isLoading)
-    } catch (error) {
-      setError('Unable to fetch Pokemon list')
-      setIsLoading(!isLoading)
-    }
-  }
-
-  useEffect(() => {
-    fetchData(offset)
-  }, [offset])
-
-  const handleNextPage = () => {
-    if (pokemonData.next) {
-      const newOffset = extractOffsetFromUrl(pokemonData.next)
-      const updatedOffset = handlePageChange(newOffset, offset)
-      setOffset(updatedOffset)
-    }
-    setIsLoading(!isLoading)
-  }
-
-  const handlePrevPage = () => {
-    if (pokemonData.previous) {
-      const newOffset = extractOffsetFromUrl(pokemonData.previous)
-      const updatedOffset = handlePageChange(newOffset, offset)
-      setOffset(updatedOffset)
-    }
-    setIsLoading(!isLoading)
-  }
+  const { pokemonData, isLoading, error } = usePokemonData()
+  const { handlePrevPage, handleNextPage } = usePagination(pokemonData)
 
   if (isLoading) {
     return <LoadingSpinner />

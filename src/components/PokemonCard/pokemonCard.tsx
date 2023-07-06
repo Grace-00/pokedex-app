@@ -37,7 +37,7 @@ const PokemonCard: FC<PokemonCardProps> = ({ pokemon }) => {
 
   return (
     <div className="pokemon-card-container">
-      <Link to={`/pokemon/${pokemon.name}`} className="pokemon-card-link">
+      <Link to={`/${pokemon.name}`} className="pokemon-card-link">
         <div className="pokemon-card">
           <h1>{pokemon.name}</h1>
           <img src={frontDefaultImage} alt={`image of: ${pokemon.name}`} />

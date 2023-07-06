@@ -15,7 +15,7 @@ const PokemonCardDetail: FC<PokemonCardDetailProps> = ({ pokemon }) => {
 
   const navigate = useNavigate()
 
-  const handleGoBack = () => {
+  const onGoBack = () => {
     navigate(-1)
   }
 
@@ -26,7 +26,7 @@ const PokemonCardDetail: FC<PokemonCardDetailProps> = ({ pokemon }) => {
         <Button
           disabled={false}
           className="pokemon-card-detail-back"
-          onClick={handleGoBack}
+          onClick={onGoBack}
           icon={<AiOutlineArrowLeft size={24} />}
         />
         <div className="pokemon-card-detail-name">
